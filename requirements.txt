@@ -9,3 +9,4 @@ imageio
 protobuf
 opencv-python
 opencv-python-headless
+matplotlib
