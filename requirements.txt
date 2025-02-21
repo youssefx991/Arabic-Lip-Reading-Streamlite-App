@@ -1,4 +1,5 @@
 # python==3.10.16
-protobuf==3.20.3
+# protobuf==3.20.3
+protobuf
 imageio==2.23.0 
 tensorflow==2.10.1
