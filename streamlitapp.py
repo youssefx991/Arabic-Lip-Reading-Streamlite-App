@@ -1,6 +1,9 @@
+!pip install tensorflow==2.10.1
+!pip install imageio==2.23.0
+
 import streamlit as st
 import os 
-# import imageio
+import imageio
 
 import tensorflow as tf
 from utils import *
