@@ -50,7 +50,7 @@ if uploaded_file is not None:
 
     # # Show full path (for debugging)
     # st.write(f"File saved at: `{abs_file_path}`")
-    st.write(f"abs path for video: {os.path.abspath(file_path)}")
+    # st.write(f"abs path for video: {os.path.abspath(file_path)}")
 
     with col2: 
         # st.info('This is all the machine learning model sees when making a prediction')
