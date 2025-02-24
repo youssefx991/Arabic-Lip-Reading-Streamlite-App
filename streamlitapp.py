@@ -53,18 +53,18 @@ if uploaded_file is not None:
     st.write(f"abs path for video: {os.path.abspath(file_path)}")
 
     with col2: 
-        st.info('This is all the machine learning model sees when making a prediction')
+        # st.info('This is all the machine learning model sees when making a prediction')
         video, annotations = load_new_data(tf.convert_to_tensor('test_video.mp4'))
         # imageio.mimsave('animation.gif', video, fps=10)
         # st.image('animation.gif', width=400) 
 
-        st.info('This is the output of the machine learning model as tokens')
+        # st.info('This is the output of the machine learning model as tokens')
         model = create_model()
         yhat = model.predict(tf.expand_dims(video, axis=0))
         decoder = tf.keras.backend.ctc_decode(yhat, [60], greedy=True)[0][0].numpy()
-        st.text(decoder)
+        # st.text(decoder)
 
         # Convert prediction to text
-        st.info('Decode the raw tokens into words')
+        st.info('This is what the model predicts to be said in video')
         converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
         st.text(converted_prediction)
