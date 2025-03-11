@@ -34,13 +34,13 @@ if uploaded_file is not None:
     file_path = os.path.join(save_dir, uploaded_file.name)
     abs_file_path = os.path.abspath(file_path)
 
-    os.system(f'ffmpeg -i {abs_file_path} -vcodec libx264 test_video.mp4 -y')
+    os.system(f'ffmpeg -i {abs_file_path} -vcodec libx264 test_video0000.mp4 -y')
 
     # Save the uploaded file
-    with open('test_video.mp4', "wb") as f:
+    with open('test_video0000.mp4', "wb") as f:
         f.write(uploaded_file.read())
 
-    preprocess(video_path='test_video.mp4', word='test', user='test')
+    preprocess(video_path='test_video0000.mp4', word='test', user='test')
 
     # # Generate two columns 
     col1, col2 = st.columns(2)
