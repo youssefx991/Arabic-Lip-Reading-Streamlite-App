@@ -41,7 +41,11 @@ if uploaded_file is not None:
     with open('test_video.mp4', "wb") as f:
         f.write(uploaded_file.read())
 
-    preprocess(video_path='test_video.mp4', word='test', user='test')
+    # Checkbox for preprocessing option
+    preprocess_option = st.checkbox('Preprocess video before analysis')
+
+    if preprocess_option:
+        preprocess(video_path='test_video.mp4', word='test', user='test')
 
     # # Generate two columns 
     col1, col2 = st.columns(2)
@@ -78,3 +82,4 @@ if uploaded_file is not None:
         st.info('This is what the model predicts to be said in video')
         converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
         st.text(converted_prediction)
+
