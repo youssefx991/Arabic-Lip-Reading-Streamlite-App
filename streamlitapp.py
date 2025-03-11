@@ -1,3 +1,4 @@
+
 import streamlit as st
 import os 
 import imageio
@@ -34,13 +35,13 @@ if uploaded_file is not None:
     file_path = os.path.join(save_dir, uploaded_file.name)
     abs_file_path = os.path.abspath(file_path)
 
-    os.system(f'ffmpeg -i {abs_file_path} -vcodec libx264 test_video0000.mp4 -y')
+    os.system(f'ffmpeg -i {abs_file_path} -vcodec libx264 test_video.mp4 -y')
 
     # Save the uploaded file
-    with open('test_video0000.mp4', "wb") as f:
+    with open('test_video.mp4', "wb") as f:
         f.write(uploaded_file.read())
 
-    preprocess(video_path='test_video0000.mp4', word='test', user='test')
+    preprocess(video_path='test_video.mp4', word='test', user='test')
 
     # # Generate two columns 
     col1, col2 = st.columns(2)
@@ -48,13 +49,20 @@ if uploaded_file is not None:
     # # Rendering the video 
     with col1:
         st.info('The video below displays the uploaded video:')
-        st.video('test_video0000.mp4')  # Correct way to display the video
+        st.video('test_video.mp4')  # Correct way to display the video
 
     # # Show full path (for debugging)
     # st.write(f"File saved at: `{abs_file_path}`")
     # st.write(f"abs path for video: {os.path.abspath(file_path)}")
 
     with col2: 
+        def check_file_exists(file_path):
+            if os.path.exists(file_path):
+                st.success(f"File {file_path} exists.")
+            else:
+                st.error(f"File {file_path} does not exist.")
+
+        check_file_exists('cropped_video.mp4')
         # st.info('This is all the machine learning model sees when making a prediction')
         video, annotations = load_new_data(tf.convert_to_tensor('cropped_video.mp4'))
         # imageio.mimsave('animation.gif', video, fps=10)
