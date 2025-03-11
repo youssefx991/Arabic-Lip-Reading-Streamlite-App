@@ -42,7 +42,7 @@ if uploaded_file is not None:
         f.write(uploaded_file.read())
 
     # Checkbox for preprocessing option
-    preprocess_option = st.checkbox('Preprocess video before analysis')
+    preprocess_option = st.checkbox('Crop Mouth Region video before analysis')
 
     video_name = 'test_video.mp4'
     if preprocess_option:
@@ -50,7 +50,7 @@ if uploaded_file is not None:
             preprocess(video_path='test_video.mp4', word='test', user='test')
             video_name = 'cropped_video.mp4'
         except Exception as e:
-            st.error(f"Error during preprocessing, will continue without preprocessing")
+            st.error(f"Error during preprocessing, will continue without cropping")
             video_name = 'test_video.mp4'    
     else:
         video_name = 'test_video.mp4'
@@ -70,7 +70,7 @@ if uploaded_file is not None:
     with col2: 
         def check_file_exists(file_path):
             if os.path.exists(file_path):
-                st.success(f"File {file_path} exists.")
+                # st.success(f"File {file_path} exists.")
             else:
                 st.error(f"File {file_path} does not exist.")
 
@@ -78,12 +78,12 @@ if uploaded_file is not None:
 
         # Button to trigger model prediction
         if st.button('Analyze Video'):
-            st.info('This is all the machine learning model sees when making a prediction')
+            #st.info('This is all the machine learning model sees when making a prediction')
             video, annotations = load_new_data(tf.convert_to_tensor(video_name))
             # imageio.mimsave('animation.gif', video, fps=10)
             # st.image('animation.gif', width=400) 
 
-            st.info('This is the output of the machine learning model as tokens')
+            # st.info('This is the output of the machine learning model as tokens')
             model = create_model()
             yhat = model.predict(tf.expand_dims(video, axis=0), verbose=0)
             decoder = tf.keras.backend.ctc_decode(yhat, [60], greedy=True)[0][0].numpy()
