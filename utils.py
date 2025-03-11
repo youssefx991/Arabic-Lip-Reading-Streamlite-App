@@ -67,7 +67,7 @@ def load_video(path:str) -> List[float]:
         ret, frame = cap.read()
         frame = cv2.resize(frame, (160, 150))  # Resize to 160x150
         frame = tf.image.rgb_to_grayscale(frame)
-        # frame=frame/255
+        frame=frame/255
         # frames.append(frame[:150,70:230,:])
         frames.append(frame)
     cap.release()
@@ -81,8 +81,8 @@ def load_video(path:str) -> List[float]:
         # Downsampling to exactly 60 frames
         frames = frames[:target_fps]  # Select the first 60 frames
 
-    mean = tf.math.reduce_mean(frames)
-    std = tf.math.reduce_std(tf.cast(frames, tf.float32))
+    # mean = tf.math.reduce_mean(frames)
+    # std = tf.math.reduce_std(tf.cast(frames, tf.float32))
     return  tf.cast((frames), tf.float32)
 
 
