@@ -18,40 +18,40 @@ else:
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-def pre_main():
-    # dataset_dir = getDirPath() # train data directory
-    dataset_dir = r"D:\4th year\data from wageih\we Dataset for training"
-    if not dataset_dir:
-        return
+# def pre_main():
+#     # dataset_dir = getDirPath() # train data directory
+#     dataset_dir = r"D:\4th year\data from wageih\we Dataset for training"
+#     if not dataset_dir:
+#         return
 
-    #target_words = ['كيف حالك','كيف اساعدك']
-    target_user = ['User6',]
+#     #target_words = ['كيف حالك','كيف اساعدك']
+#     target_user = ['User6',]
 
 
-    for folder_name in os.listdir(dataset_dir):
-        # if folder_name not in target_words:
-        #     print('skip ', folder_name)
-        #     continue
+#     for folder_name in os.listdir(dataset_dir):
+#         # if folder_name not in target_words:
+#         #     print('skip ', folder_name)
+#         #     continue
         
-        word_path = os.path.join(dataset_dir, folder_name)
-        print(word_path)
+#         word_path = os.path.join(dataset_dir, folder_name)
+#         print(word_path)
 
-        for user in os.listdir(word_path):
-            if user not in target_user:
-                print('skip ', user)
-                continue
+#         for user in os.listdir(word_path):
+#             if user not in target_user:
+#                 print('skip ', user)
+#                 continue
 
-            user_path = os.path.join(word_path, user)
-            # if not os.path.isdir(user_path):
-            #     continue
+#             user_path = os.path.join(word_path, user)
+#             # if not os.path.isdir(user_path):
+#             #     continue
 
-            print(user)
-            for video_file in os.listdir(user_path):
-                print(video_file)
-                if video_file.endswith((".mp4", ".avi", ".mov")):  # Adjust for your video format
-                    video_path = os.path.join(user_path, video_file)
-                    preprocess(video_path=video_path, word=folder_name, user = user)
-                    #return
+#             print(user)
+#             for video_file in os.listdir(user_path):
+#                 print(video_file)
+#                 if video_file.endswith((".mp4", ".avi", ".mov")):  # Adjust for your video format
+#                     video_path = os.path.join(user_path, video_file)
+#                     preprocess(video_path=video_path, word=folder_name, user = user)
+#                     #return
         
     
 
