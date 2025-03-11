@@ -66,7 +66,7 @@ def preprocess(video_path, word,user):
     """
 
     video_name = getVidName(video_path=video_path)
-    # print('Preprocessing ', video_name)
+    
 
     with VideoFileClip(video_path) as clip:
 
