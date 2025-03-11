@@ -10,11 +10,11 @@ import io
 FRAME_LEVEL_CROP = True
 
 if FRAME_LEVEL_CROP:
-    from MouthBBox2 import *
-    from CropVids2 import *
+    from Preprocessing.MouthBBox2 import *
+    from Preprocessing.CropVids2 import *
 else:
-    from MouthBBox import *
-    from CropVids import *
+    from Preprocessing.MouthBBox import *
+    from Preprocessing.CropVids import *
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
