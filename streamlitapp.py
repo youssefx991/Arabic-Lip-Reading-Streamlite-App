@@ -70,7 +70,7 @@ if uploaded_file is not None:
 
         # st.info('This is the output of the machine learning model as tokens')
         model = create_model()
-        yhat = model.predict(tf.expand_dims(video, axis=0))
+        yhat = model.predict(tf.expand_dims(video, axis=0), verbose=0)
         decoder = tf.keras.backend.ctc_decode(yhat, [60], greedy=True)[0][0].numpy()
         # st.text(decoder)
 
