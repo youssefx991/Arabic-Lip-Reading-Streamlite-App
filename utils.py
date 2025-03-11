@@ -106,8 +106,8 @@ def load_new_data(path: str):
 
     video_path = bytes.decode(path.numpy())
 
-    print("Extracting frames & alignments from new video")
-    print(f"Current Path: {video_path}")
+    # print("Extracting frames & alignments from new video")
+    # print(f"Current Path: {video_path}")
     frames = load_video(video_path)
     alignment = load_alignments('فيديو جديد')
     return frames, alignment

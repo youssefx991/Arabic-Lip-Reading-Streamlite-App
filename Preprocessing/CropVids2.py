@@ -90,4 +90,4 @@ def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_v
     cap.release()
     out.release()
 
-    print(f"Cropped video saved to {outputPath}")
+    # print(f"Cropped video saved to {outputPath}")

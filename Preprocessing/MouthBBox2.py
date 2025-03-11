@@ -53,7 +53,7 @@ def getMouthBBox(video_path: str, landmarks_path: str, output_path: str=""):
         while cap.isOpened():
             success, frame = cap.read()
             if not success:
-                print("Finished processing the video for bounding box calculation.")
+                # print("Finished processing the video for bounding box calculation.")
                 break
 
             # Convert frame to RGB for MediaPipe processing
