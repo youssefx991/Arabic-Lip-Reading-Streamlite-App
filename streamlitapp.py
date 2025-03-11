@@ -61,7 +61,7 @@ if uploaded_file is not None:
     # # Rendering the video 
     with col1:
         st.info('The video below displays the uploaded video:')
-        st.video("test_video")  # Correct way to display the video
+        st.video("test_video.mp4")  # Correct way to display the video
 
     # # Show full path (for debugging)
     # st.write(f"File saved at: `{abs_file_path}`")
