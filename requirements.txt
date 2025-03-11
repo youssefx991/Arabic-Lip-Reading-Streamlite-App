@@ -10,3 +10,4 @@ protobuf
 opencv-python
 opencv-python-headless
 matplotlib
+moviepy
