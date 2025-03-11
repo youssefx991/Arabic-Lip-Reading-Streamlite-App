@@ -61,7 +61,7 @@ def create_model():
 
     model = Model(inputs=input_data, outputs=y_pred)
 
-    model.load_weights('./checkpoint_cpu_allover54_epoch_01.h5')
+    model.load_weights('./checkpoint_our_dataset_39_epoch_01.h5')
     return model
 
 model = create_model()
