@@ -41,7 +41,7 @@ def convert_digits_to_arabic(phrase: str) -> str:
     '1': 'واحد',  # wahid
     '2': 'اثنان',  # ithnan
     '3': 'ثلاثة',  # thalatha
-    '4': 'أربعة',  # arba’a
+    '4': 'اربعة',  # arba’a
     '5': 'خمسة',   # khamsa
     '6': 'ستة',    # sitta
     '7': 'سبعة',   # sab’a
