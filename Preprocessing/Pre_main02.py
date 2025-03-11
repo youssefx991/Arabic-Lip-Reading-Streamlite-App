@@ -85,10 +85,10 @@ def preprocess(video_path, word,user):
             x1, y1, x2, y2 = getMouthBBox(video_path=video_path, landmarks_path=landmarks_path)
 
             # 5- croping the frames and save
-            dir_path = f"./Dataset/{word}/{user}"
-            dirExists(dir_path=dir_path)
-            save_path = f"{dir_path}/{video_name}.mp4" 
-            cropped_video_path = f"{save_path[:-4]}_cropped.mp4"
+            # dir_path = f"./Dataset/{word}/{user}"
+            # dirExists(dir_path=dir_path)
+            # save_path = f"{dir_path}/{video_name}.mp4" 
+            cropped_video_path = f"cropped_video.mp4"
 
             # if FRAME_LEVEL_CROP: 
             cropVideo(list(zip(x1, y1)), list(zip(x2, y2)), videoPath=video_path, outputPath=cropped_video_path)
