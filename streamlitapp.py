@@ -70,6 +70,7 @@ if uploaded_file is not None:
     with col2: 
         def check_file_exists(file_path):
             if os.path.exists(file_path):
+                pass
                 # st.success(f"File {file_path} exists.")
             else:
                 st.error(f"File {file_path} does not exist.")
