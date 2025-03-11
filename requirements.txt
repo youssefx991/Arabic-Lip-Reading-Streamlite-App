@@ -11,4 +11,3 @@ opencv-python
 opencv-python-headless
 matplotlib
 moviepy==1.0.3
-libgl1-mesa-glx
