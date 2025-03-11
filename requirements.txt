@@ -10,4 +10,4 @@ protobuf
 opencv-python
 opencv-python-headless
 matplotlib
-moviepy
+moviepy==1.0.3
