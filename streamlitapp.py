@@ -61,22 +61,14 @@ if uploaded_file is not None:
     # # Rendering the video 
     with col1:
         st.info('The video below displays the uploaded video:')
-        st.video(video_name)  # Correct way to display the video
+        st.video("test_video")  # Correct way to display the video
 
     # # Show full path (for debugging)
     # st.write(f"File saved at: `{abs_file_path}`")
     # st.write(f"abs path for video: {os.path.abspath(file_path)}")
 
     with col2: 
-        def check_file_exists(file_path):
-            if os.path.exists(file_path):
-                pass
-                # st.success(f"File {file_path} exists.")
-            else:
-                st.error(f"File {file_path} does not exist.")
-
         check_file_exists(video_name)
-
         # Button to trigger model prediction
         if st.button('Analyze Video'):
             #st.info('This is all the machine learning model sees when making a prediction')

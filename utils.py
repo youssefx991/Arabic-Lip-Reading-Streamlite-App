@@ -111,3 +111,10 @@ def load_new_data(path: str):
     frames = load_video(video_path)
     alignment = load_alignments('فيديو جديد')
     return frames, alignment
+
+def check_file_exists(file_path):
+    if os.path.exists(file_path):
+        pass
+        # st.success(f"File {file_path} exists.")
+    else:
+        st.error(f"File {file_path} does not exist.")
