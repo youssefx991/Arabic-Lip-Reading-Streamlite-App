@@ -44,8 +44,12 @@ if uploaded_file is not None:
     # Checkbox for preprocessing option
     preprocess_option = st.checkbox('Preprocess video before analysis')
 
+    video_name = 'test_video.mp4'
     if preprocess_option:
         preprocess(video_path='test_video.mp4', word='test', user='test')
+        video_name = 'cropped_video.mp4'
+    else:
+        video_name = 'test_video.mp4'
 
     # # Generate two columns 
     col1, col2 = st.columns(2)
@@ -53,7 +57,7 @@ if uploaded_file is not None:
     # # Rendering the video 
     with col1:
         st.info('The video below displays the uploaded video:')
-        st.video('test_video.mp4')  # Correct way to display the video
+        st.video(video_name)  # Correct way to display the video
 
     # # Show full path (for debugging)
     # st.write(f"File saved at: `{abs_file_path}`")
@@ -66,9 +70,9 @@ if uploaded_file is not None:
             else:
                 st.error(f"File {file_path} does not exist.")
 
-        check_file_exists('cropped_video.mp4')
+        check_file_exists(video_name)
         # st.info('This is all the machine learning model sees when making a prediction')
-        video, annotations = load_new_data(tf.convert_to_tensor('cropped_video.mp4'))
+        video, annotations = load_new_data(tf.convert_to_tensor(video_name))
         # imageio.mimsave('animation.gif', video, fps=10)
         # st.image('animation.gif', width=400) 
 
