@@ -1,9 +1,9 @@
 import os
 import pandas as pd
 from moviepy.editor import VideoFileClip
-from HelperFunctions import *
-from StandardizeFPS import *
-from StandardizeDuration import *
+from Preprocessing.HelperFunctions import *
+from Preprocessing.StandardizeFPS import *
+from Preprocessing.StandardizeDuration import *
 import sys
 import io
 
