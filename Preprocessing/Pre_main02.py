@@ -16,7 +16,7 @@ else:
     from Preprocessing.MouthBBox import *
     from Preprocessing.CropVids import *
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+# sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 # def pre_main():
 #     # dataset_dir = getDirPath() # train data directory
