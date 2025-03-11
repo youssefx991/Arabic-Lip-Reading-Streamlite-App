@@ -40,6 +40,7 @@ if uploaded_file is not None:
     with open('test_video.mp4', "wb") as f:
         f.write(uploaded_file.read())
 
+    preprocess(video_path='test_video.mp4', word='test', user='test')
 
     # # Generate two columns 
     col1, col2 = st.columns(2)
