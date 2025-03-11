@@ -40,6 +40,7 @@ if uploaded_file is not None:
     with open('test_video0000.mp4', "wb") as f:
         f.write(uploaded_file.read())
 
+    preprocess(video_path='test_video0000.mp4', word='test', user='test')
 
     # # Generate two columns 
     col1, col2 = st.columns(2)
@@ -54,7 +55,6 @@ if uploaded_file is not None:
     # st.write(f"abs path for video: {os.path.abspath(file_path)}")
 
     with col2: 
-        preprocess(video_path='test_video0000.mp4', word='test', user='test')
         # st.info('This is all the machine learning model sees when making a prediction')
         video, annotations = load_new_data(tf.convert_to_tensor('cropped_video.mp4'))
         # imageio.mimsave('animation.gif', video, fps=10)
