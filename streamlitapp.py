@@ -46,8 +46,12 @@ if uploaded_file is not None:
 
     video_name = 'test_video.mp4'
     if preprocess_option:
-        preprocess(video_path='test_video.mp4', word='test', user='test')
-        video_name = 'cropped_video.mp4'
+        try:
+            preprocess(video_path='test_video.mp4', word='test', user='test')
+            video_name = 'cropped_video.mp4'
+        except Exception as e:
+            st.error(f"Error during preprocessing, will continue without preprocessing")
+            video_name = 'test_video.mp4'    
     else:
         video_name = 'test_video.mp4'
 
