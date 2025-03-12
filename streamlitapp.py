@@ -21,6 +21,8 @@ st.title('LipNet Full Stack App')
 # File uploader for manual video selection
 uploaded_file = st.file_uploader("Upload a video")
 
+preprocess_option = st.checkbox('Crop Mouth Region video before analysis')
+
 
 # Generate two columns 
 col1, col2 = st.columns(2)
@@ -42,7 +44,6 @@ if uploaded_file is not None:
         f.write(uploaded_file.read())
 
     # Checkbox for preprocessing option
-    preprocess_option = st.checkbox('Crop Mouth Region video before analysis')
 
     video_name = 'test_video.mp4'
 
