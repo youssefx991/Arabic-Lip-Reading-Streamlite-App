@@ -3,6 +3,7 @@ import imageio
 import numpy as np
 import os
 import tensorflow as tf
+import streamlit as st
 
 from typing import List,Tuple
 from matplotlib import pyplot as plt
@@ -62,6 +63,11 @@ def convert_digits_to_arabic(phrase: str) -> str:
 
 def load_video(path:str) -> List[float]:
     cap = cv2.VideoCapture(path)
+
+    if not cap.isOpened():
+        st.error(f"Error: Could not open video file {path}")
+        return
+    
     frames = []
     for _ in range(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))):
         ret, frame = cap.read()
