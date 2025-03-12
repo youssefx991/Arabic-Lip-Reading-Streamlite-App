@@ -45,15 +45,6 @@ if uploaded_file is not None:
     preprocess_option = st.checkbox('Crop Mouth Region video before analysis')
 
     video_name = 'test_video.mp4'
-    if preprocess_option:
-        try:
-            preprocess(video_path='test_video.mp4', word='test', user='test')
-            video_name = 'cropped_video.mp4'
-        except Exception as e:
-            st.error(f"Error during preprocessing, will continue without cropping")
-            video_name = 'test_video.mp4'    
-    else:
-        video_name = 'test_video.mp4'
 
     # # Generate two columns 
     col1, col2 = st.columns(2)
@@ -68,6 +59,15 @@ if uploaded_file is not None:
     # st.write(f"abs path for video: {os.path.abspath(file_path)}")
 
     with col2: 
+        if preprocess_option:
+            try:
+                preprocess(video_path='test_video.mp4', word='test', user='test')
+                video_name = 'cropped_video.mp4'
+            except Exception as e:
+                st.error(f"Error during preprocessing, will continue without cropping")
+                video_name = 'test_video.mp4'    
+        else:
+            video_name = 'test_video.mp4'
         check_file_exists(video_name)
         # Button to trigger model prediction
         if st.button('Analyze Video'):
