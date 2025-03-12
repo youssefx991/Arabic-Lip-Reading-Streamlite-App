@@ -74,19 +74,22 @@ if uploaded_file is not None:
         if st.button('Analyze Video'):
             with st.spinner('Analyzing video...'):
                 #st.info('This is all the machine learning model sees when making a prediction')
-                video, annotations = load_new_data(tf.convert_to_tensor(video_name))
-                # imageio.mimsave('animation.gif', video, fps=10)
-                # st.image('animation.gif', width=400) 
+                try:
+                    video, annotations = load_new_data(tf.convert_to_tensor(video_name))
+                    # imageio.mimsave('animation.gif', video, fps=10)
+                    # st.image('animation.gif', width=400) 
 
-                # st.info('This is the output of the machine learning model as tokens')
-                model = create_model()
-                yhat = model.predict(tf.expand_dims(video, axis=0), verbose=0)
-                decoder = tf.keras.backend.ctc_decode(yhat, [60], greedy=True)[0][0].numpy()
-                # st.text(decoder)
+                    # st.info('This is the output of the machine learning model as tokens')
+                    model = create_model()
+                    yhat = model.predict(tf.expand_dims(video, axis=0), verbose=0)
+                    decoder = tf.keras.backend.ctc_decode(yhat, [60], greedy=True)[0][0].numpy()
+                    # st.text(decoder)
 
-                # Convert prediction to text
-                st.info('This is what the model predicts to be said in video')
-                converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
-                st.text(converted_prediction)
+                    # Convert prediction to text
+                    st.info('This is what the model predicts to be said in video')
+                    converted_prediction = tf.strings.reduce_join(num_to_char(decoder)).numpy().decode('utf-8')
+                    st.text(converted_prediction)
+                except Exception as e:
+                    st.error(f"Error during video analysis, please make sure you uploaded a valid video file and seleceted the correct cropping option")
         
 
