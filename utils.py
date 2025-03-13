@@ -67,7 +67,7 @@ def load_video(path:str) -> List[float]:
     check_file_exists(path)
     st.info(f"int(cap.get(cv2.CAP_PROP_FRAME_COUNT)): {int(cap.get(cv2.CAP_PROP_FRAME_COUNT))}")
     if not cap.isOpened():
-        st.error(f"Error: Could not open video file {path}")
+        st.error(f"Error: Could not read video file {path}")
         return
     frames = []
     for _ in range(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))):
