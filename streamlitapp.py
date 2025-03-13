@@ -46,6 +46,15 @@ if uploaded_file is not None:
     # Checkbox for preprocessing option
 
     video_name = 'test_video.mp4'
+    if preprocess_option:
+        try:
+            preprocess(video_path='test_video.mp4', word='test', user='test')
+            video_name = 'cropped_video.mp4'
+        except Exception as e:
+            st.error(f"Error during preprocessing, will continue without cropping")
+            video_name = 'test_video.mp4'    
+    else:
+        video_name = 'test_video.mp4'
 
     # # Generate two columns 
     col1, col2 = st.columns(2)
@@ -64,15 +73,6 @@ if uploaded_file is not None:
         if st.button('Analyze Video'):
             with st.spinner('Analyzing video...'):
                 #st.info('This is all the machine learning model sees when making a prediction')
-                if preprocess_option:
-                    try:
-                        preprocess(video_path='test_video.mp4', word='test', user='test')
-                        video_name = 'cropped_video.mp4'
-                    except Exception as e:
-                        st.error(f"Error during preprocessing, will continue without cropping")
-                        video_name = 'test_video.mp4'    
-                else:
-                    video_name = 'test_video.mp4'
                 try:
                     abs_video_path = os.path.abspath(video_name)
                     st.write(f"Absolute path of video: {abs_video_path}")
