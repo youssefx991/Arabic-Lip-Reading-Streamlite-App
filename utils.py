@@ -65,9 +65,9 @@ def load_video(path:str) -> List[float]:
     cap = cv2.VideoCapture(path)
 
     check_file_exists(path)
-    st.info(f"int(cap.get(cv2.CAP_PROP_FRAME_COUNT)): {int(cap.get(cv2.CAP_PROP_FRAME_COUNT))}")
+    # st.info(f"int(cap.get(cv2.CAP_PROP_FRAME_COUNT)): {int(cap.get(cv2.CAP_PROP_FRAME_COUNT))}")
     if not cap.isOpened():
-        st.error(f"Error: Could not read video file {path}")
+        st.error(f"Error: Could not read video file as it is empty or corrupted")
         return
     frames = []
     for _ in range(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))):
