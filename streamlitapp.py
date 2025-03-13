@@ -81,6 +81,7 @@ def display_files_in_directory():
     # st.write("Files in the directory:")
     for file in files:
         # st.write(file)
+        pass
 
 if __name__ == "__main__":
     main()
