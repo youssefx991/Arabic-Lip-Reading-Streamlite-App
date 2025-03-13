@@ -40,6 +40,8 @@ def process_uploaded_file(uploaded_file, preprocess_option):
         try:
             preprocess(video_path='test_video.mp4', word='test', user='test')
             video_name = 'cropped_video.mp4'
+            abs_video_path = os.path.abspath(video_name)
+            os.system(f'ffmpeg -i {abs_video_path} -vcodec libx264 {video_name} -y')
         except Exception as e:
             st.error("Error during preprocessing, will continue without cropping")
             video_name = 'test_video.mp4'
