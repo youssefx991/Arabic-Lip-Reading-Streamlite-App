@@ -81,7 +81,9 @@ if uploaded_file is not None:
                 else:
                     video_name = 'test_video.mp4'
                 try:
-                    video, annotations = load_new_data(tf.convert_to_tensor(video_name))
+                    abs_video_path = os.path.abspath(video_name)
+                    st.write(f"Absolute path of video: {abs_video_path}")
+                    video, annotations = load_new_data(tf.convert_to_tensor(abs_video_path))
                     # imageio.mimsave('animation.gif', video, fps=10)
                     # st.image('animation.gif', width=400) 
 
