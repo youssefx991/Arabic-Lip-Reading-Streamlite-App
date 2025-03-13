@@ -91,4 +91,4 @@ def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_v
     cap.release()
     out.release()
 
-    # st.info(f"Cropped video saved to {outputPath}")
+    _ = ''' st.info(f"Cropped video saved to {outputPath}") '''
