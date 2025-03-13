@@ -61,7 +61,7 @@ def display_video_and_analyze(video_name):
             with st.spinner('Analyzing video...'):
                 try:
                     abs_video_path = os.path.abspath(video_name)
-                    st.write(f"Absolute path of video: {abs_video_path}")
+                    # st.write(f"Absolute path of video: {abs_video_path}")
                     video, annotations = load_new_data(tf.convert_to_tensor(abs_video_path))
 
                     model = create_model()
@@ -78,9 +78,9 @@ def display_video_and_analyze(video_name):
 
 def display_files_in_directory():
     files = os.listdir('.')
-    st.write("Files in the directory:")
+    # st.write("Files in the directory:")
     for file in files:
-        st.write(file)
+        # st.write(file)
 
 if __name__ == "__main__":
     main()
