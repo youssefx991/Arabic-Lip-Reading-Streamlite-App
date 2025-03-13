@@ -1,5 +1,6 @@
 import cv2
 import os
+import streamlit as st
 
 def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_video.mp4"):
     """
@@ -16,7 +17,7 @@ def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_v
     # Load the video
     cap = cv2.VideoCapture(videoPath)
     if not cap.isOpened():
-        print("Error opening video file:", videoPath)
+        st.info("Error opening video file:", videoPath)
         return
 
     # Get video properties
@@ -63,12 +64,12 @@ def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_v
         # Check if the new coordinates are within the video frame boundaries
         if not (0 <= x1 < frame_width and 0 <= x2 <= frame_width and 
                 0 <= y1 < frame_height and 0 <= y2 <= frame_height):
-            print(f"Frame {frame_index}: Out of image indices! Skipping this frame.")
+            st.info(f"Frame {frame_index}: Out of image indices! Skipping this frame.")
             frame_index += 1
             continue
 
         if x2 <= x1 or y2 <= y1:
-            print(f"Frame {frame_index}: Invalid cropping dimensions. Skipping this frame.")
+            st.info(f"Frame {frame_index}: Invalid cropping dimensions. Skipping this frame.")
             frame_index += 1
             continue
 
@@ -90,4 +91,4 @@ def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_v
     cap.release()
     out.release()
 
-    # print(f"Cropped video saved to {outputPath}")
+    st.info(f"Cropped video saved to {outputPath}")
