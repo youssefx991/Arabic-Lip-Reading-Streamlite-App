@@ -58,13 +58,6 @@ if uploaded_file is not None:
     # # Show full path (for debugging)
     # st.write(f"File saved at: `{abs_file_path}`")
     # st.write(f"abs path for video: {os.path.abspath(file_path)}")
-    # Get the list of files in the current directory
-    files = os.listdir('.')
-
-    # Display the list of files
-    st.write("Files in the directory:")
-    for file in files:
-        st.write(file)
     with col2: 
         check_file_exists(video_name)
         # Button to trigger model prediction
@@ -101,3 +94,11 @@ if uploaded_file is not None:
                     st.error(f"Error during video analysis, please make sure you uploaded a valid video file and seleceted the correct cropping option")
         
 
+
+    # Get the list of files in the current directory
+    files = os.listdir('.')
+
+    # Display the list of files
+    st.write("Files in the directory:")
+    for file in files:
+        st.write(file)
