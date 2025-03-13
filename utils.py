@@ -63,7 +63,7 @@ def convert_digits_to_arabic(phrase: str) -> str:
 
 def load_video(path:str) -> List[float]:
     cap = cv2.VideoCapture(path)
-
+    check_file_exists(path)
     if not cap.isOpened():
         st.error(f"Error: Could not open video file {path}")
         return
