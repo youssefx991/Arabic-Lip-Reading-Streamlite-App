@@ -66,20 +66,20 @@ if uploaded_file is not None:
     for file in files:
         st.write(file)
     with col2: 
-        if preprocess_option:
-            try:
-                preprocess(video_path='test_video.mp4', word='test', user='test')
-                video_name = 'cropped_video.mp4'
-            except Exception as e:
-                st.error(f"Error during preprocessing, will continue without cropping")
-                video_name = 'test_video.mp4'    
-        else:
-            video_name = 'test_video.mp4'
         check_file_exists(video_name)
         # Button to trigger model prediction
         if st.button('Analyze Video'):
             with st.spinner('Analyzing video...'):
                 #st.info('This is all the machine learning model sees when making a prediction')
+                if preprocess_option:
+                    try:
+                        preprocess(video_path='test_video.mp4', word='test', user='test')
+                        video_name = 'cropped_video.mp4'
+                    except Exception as e:
+                        st.error(f"Error during preprocessing, will continue without cropping")
+                        video_name = 'test_video.mp4'    
+                else:
+                    video_name = 'test_video.mp4'
                 try:
                     video, annotations = load_new_data(tf.convert_to_tensor(video_name))
                     # imageio.mimsave('animation.gif', video, fps=10)
