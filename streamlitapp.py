@@ -8,13 +8,9 @@ from modelutil import *
 from Preprocessing.Pre_main02 import preprocess
 import os
 
-
 def main():
-    weights_exist = False
     st.set_page_config(layout='wide')
-    if not weights_exist:
-        download_weights()
-        weights_exist = True
+    download_weights()
     with st.sidebar:
         st.image('https://www.onepointltd.com/wp-content/uploads/2020/03/inno2.png')
         st.title('LipBuddy')
