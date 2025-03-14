@@ -10,7 +10,7 @@ import os
 
 def main():
     st.set_page_config(layout='wide')
-
+    download_weights()
     with st.sidebar:
         st.image('https://www.onepointltd.com/wp-content/uploads/2020/03/inno2.png')
         st.title('LipBuddy')
@@ -63,7 +63,7 @@ def display_video_and_analyze(video_name):
                     abs_video_path = os.path.abspath(video_name)
                     # st.write(f"Absolute path of video: {abs_video_path}")
                     video, annotations = load_new_data(tf.convert_to_tensor(abs_video_path))
-
+                    
                     model = create_model()
                     yhat = model.predict(tf.expand_dims(video, axis=0), verbose=0)
                     decoder = tf.keras.backend.ctc_decode(yhat, [60], greedy=True)[0][0].numpy()

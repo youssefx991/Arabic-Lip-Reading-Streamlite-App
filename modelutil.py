@@ -79,7 +79,7 @@ def create_model():
 
     model = Model(inputs=input_data, outputs=y_pred)
 
-    download_weights()
+    # download_weights()
     model.load_weights('./checkpoint.weights.h5')
     return model
 
