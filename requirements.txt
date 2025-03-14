@@ -12,3 +12,4 @@ opencv-python-headless
 matplotlib
 moviepy==1.0.3
 mediapipe
+gdown

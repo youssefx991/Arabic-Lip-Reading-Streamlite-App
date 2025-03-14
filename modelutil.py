@@ -23,7 +23,25 @@ import shutil
 import glob
 
 from utils import *
+import gdown
+
 target_fps = 60
+
+
+def download_weights():
+    # Google Drive share link
+    share_link = "https://drive.google.com/file/d/13GsEgqMzbGQkijG0bfJitFnWYhhMnEMj/view?usp=sharing"
+
+    # Extract file ID
+    file_id = share_link.split("/d/")[1].split("/view")[0]
+
+    # Construct the direct download URL
+    download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+
+    # Download the file
+    output = "checkpoint.weights.h5"
+    gdown.download(download_url, output, quiet=False)
+
 
 
 def create_model():
@@ -61,7 +79,8 @@ def create_model():
 
     model = Model(inputs=input_data, outputs=y_pred)
 
-    model.load_weights('./checkpoint_our_dataset_43_epoch_02.h5')
+    download_weights()
+    model.load_weights('./checkpoint.weights.h5')
     return model
 
 model = create_model()
