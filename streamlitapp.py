@@ -8,9 +8,9 @@ from modelutil import *
 from Preprocessing.Pre_main02 import preprocess
 import os
 
-weights_exist = False
 
 def main():
+    weights_exist = False
     st.set_page_config(layout='wide')
     if not weights_exist:
         download_weights()
