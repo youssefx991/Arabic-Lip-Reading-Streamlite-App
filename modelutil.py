@@ -30,7 +30,7 @@ target_fps = 60
 
 def download_weights():
     # Google Drive share link
-    share_link = "https://drive.google.com/file/d/13GsEgqMzbGQkijG0bfJitFnWYhhMnEMj/view?usp=sharing"
+    share_link = "https://drive.google.com/file/d/1_jssk2-PJa1r7TAJqYdz4MwNpm8uHjZ2/view?usp=sharing"
 
     # Extract file ID
     file_id = share_link.split("/d/")[1].split("/view")[0]
