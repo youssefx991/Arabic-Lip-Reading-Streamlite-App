@@ -10,6 +10,7 @@ import os
 
 def main():
     st.set_page_config(layout='wide')
+    
     download_weights()
     with st.sidebar:
         st.image('https://www.onepointltd.com/wp-content/uploads/2020/03/inno2.png')
@@ -25,10 +26,11 @@ def main():
         process_uploaded_file(uploaded_file, preprocess_option)
 
 def process_uploaded_file(uploaded_file, preprocess_option):
-    save_dir = "uploaded_videos"
-    os.makedirs(save_dir, exist_ok=True)
-    file_path = os.path.join(save_dir, uploaded_file.name)
-    abs_file_path = os.path.abspath(file_path)
+    # save_dir = "uploaded_videos"
+    # os.makedirs(save_dir, exist_ok=True)
+    # file_path = os.path.join(save_dir, uploaded_file.name)
+    # abs_file_path = os.path.abspath(file_path)
+    abs_file_path = os.path.abspath(uploaded_file.name)
 
     os.system(f'ffmpeg -i {abs_file_path} -vcodec libx264 test_video.mp4 -y')
 
