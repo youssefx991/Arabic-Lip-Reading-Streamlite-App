@@ -82,7 +82,7 @@ def create_model():
     # # download_weights()
     # model.load_weights('./checkpoint.weights.h5')
 
-    model = tf.keras.models.load_model('model.h5')
+    model = tf.keras.models.load_model('my_model.h5')
     return model
 
 model = create_model()
