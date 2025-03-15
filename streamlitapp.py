@@ -80,10 +80,10 @@ def display_video_and_analyze(video_name):
 
 def display_files_in_directory():
     files = os.listdir('.')
-    # st.write("Files in the directory:")
+    st.write("Files in the directory:")
     for file in files:
-        # st.write(file)
-        pass
+        st.write(file)
+        # pass
 
 if __name__ == "__main__":
     main()
