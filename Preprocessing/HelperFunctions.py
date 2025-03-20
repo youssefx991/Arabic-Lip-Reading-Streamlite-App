@@ -26,6 +26,6 @@ def dirExists(dir_path):
 
 def getVidName(video_path):
     video_name = os.path.splitext(os.path.basename(video_path))[0]
-    # print('video_name: ',video_name)
+    print('video_name: ',video_name)
     return video_name
 

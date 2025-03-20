@@ -1,6 +1,6 @@
 import cv2
 import mediapipe as mp
-import streamlit as st
+
 # Define mouth landmark indices (MediaPipe Face Mesh topology)
 # MOUTH_LANDMARKS = [
 #     61, 146, 91, 181, 84, 17, 314, 405, 321, 375, 291, 308, 324, 318, 402, 317,
@@ -17,6 +17,7 @@ CHIN_LANDMARKS = [
 ]
 
 def getMouthBBox(video_path: str, landmarks_path: str, output_path: str=""):
+    print("in getMouthBBox from MouthBBox2")
     # Initialize MediaPipe Face Mesh
     mp_face_mesh = mp.solutions.face_mesh
 
@@ -53,7 +54,7 @@ def getMouthBBox(video_path: str, landmarks_path: str, output_path: str=""):
         while cap.isOpened():
             success, frame = cap.read()
             if not success:
-                # st.info("Finished processing the video for bounding box calculation.")
+                print("Finished processing the video for bounding box calculation.")
                 break
 
             # Convert frame to RGB for MediaPipe processing

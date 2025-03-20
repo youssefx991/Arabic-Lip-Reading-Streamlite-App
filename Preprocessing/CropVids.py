@@ -71,4 +71,4 @@ def cropVideo(point1, point2, videoPath, outputPath="cropped_video.mp4"):
     cap.release()
     out.release()
 
-    # print(f"Cropped video saved to {outputPath}")
+    print(f"Cropped video saved to {outputPath}")
