@@ -44,6 +44,8 @@ def process_uploaded_file(uploaded_file, preprocess_option):
             video_name = 'cropped_video.mp4'
             abs_video_path = os.path.abspath(video_name)
             os.system(f'ffmpeg -i {abs_video_path} -vcodec libx264 {video_name} -y')
+            with open('cropped_video.mp4', 'rb') as f:
+                st.download_button('Download Cropped Video', f, file_name='cropped_video.mp4')
         except Exception as e:
             st.error("Error during preprocessing, will continue without cropping")
             video_name = 'test_video.mp4'
