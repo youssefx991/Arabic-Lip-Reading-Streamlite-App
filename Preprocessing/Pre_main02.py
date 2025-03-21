@@ -19,12 +19,6 @@ else:
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
-def get_video_rotation_mediainfo(video_path):
-    media_info = MediaInfo.parse(video_path)
-    for track in media_info.tracks:
-        if track.track_type == "Video" and track.rotation:
-            return int(float(track.rotation))
-    return 0  # No rotation detected
 
 def pre_main():
     # dataset_dir = getDirPath() # train data directory
@@ -79,34 +73,17 @@ def preprocess(video_path, word,user):
 
     with VideoFileClip(video_path) as clip:
 
-            # 1- standardize fps
-
-            # 2- standardize duration
-
-            # Save the standardized video
-            # dir_path = f"./Dataset/{word}"
-            # dirExists(dir_path=dir_path) # check if the dir exists, if not creat it
-            # save_path = f"{dir_path}/{video_name}({word}).mp4" 
-            # video_stretched.write_videofile(save_path, codec="libx264")
-
-            # 4- get mouth region
-            #landmarks_path = f"{video_path[:-4]}_lm.txt"
-            rotation = get_video_rotation_mediainfo(video_path)
+            # 1- Rotate video if needed
             rotate_viedo_path = f"rotated_video.mp4"
-            rotate(videoPath=video_path, outputPath=rotate_viedo_path, rotation=rotation)
+            rotate(videoPath=video_path, outputPath=rotate_viedo_path)
 
+            # 2 - Get mouth region boundaries
             x1, y1, x2, y2 = getMouthBBox(video_path=rotate_viedo_path, landmarks_path="")
 
-            # 5- croping the frames and save
-            # dir_path = f"./Dataset/{user}/{word}"
-            # dirExists(dir_path=dir_path)
-            # save_path = f"{dir_path}/{video_name}.mp4" 
-            cropped_video_path = f"cropped_video.mp4"
+            # 3 - perform cropping to get final video
             final_video_path = f"final_video.mp4"
-            # if FRAME_LEVEL_CROP: 
-            rotation = cropVideo(list(zip(x1, y1)), list(zip(x2, y2)), videoPath=rotate_viedo_path, outputPath=final_video_path)
-            # else:
-            #     cropVideo((x1,y1), (x2,y2), videoPath=video_path, outputPath=cropped_video_path)
+            cropVideo(list(zip(x1, y1)), list(zip(x2, y2)), videoPath=rotate_viedo_path, outputPath=final_video_path)
+            
            
             
         

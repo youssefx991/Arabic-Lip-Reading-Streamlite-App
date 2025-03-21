@@ -8,7 +8,7 @@ def get_video_rotation_mediainfo(video_path):
             return int(float(track.rotation))
     return 0  # No rotation detected
 
-def rotate(videoPath, outputPath="final_video.mp4", rotation=0):
+def rotate(videoPath, outputPath="final_video.mp4"):
     print("in rotate from Rotate")
 
     # Load the video
@@ -17,6 +17,8 @@ def rotate(videoPath, outputPath="final_video.mp4", rotation=0):
         print("Error opening video file:", videoPath)
         return
     print("video path for rotation:", videoPath)
+
+    rotation = get_video_rotation_mediainfo(videoPath)
     print(f"Rotation: {rotation} degrees")
 
     # Get video properties
