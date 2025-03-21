@@ -19,6 +19,13 @@ else:
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
+def get_video_rotation_mediainfo(video_path):
+    media_info = MediaInfo.parse(video_path)
+    for track in media_info.tracks:
+        if track.track_type == "Video" and track.rotation:
+            return int(float(track.rotation))
+    return 0  # No rotation detected
+
 def pre_main():
     # dataset_dir = getDirPath() # train data directory
     dataset_dir = r"D:\4th year\data from wageih\new we dataset"
@@ -84,7 +91,11 @@ def preprocess(video_path, word,user):
 
             # 4- get mouth region
             #landmarks_path = f"{video_path[:-4]}_lm.txt"
-            x1, y1, x2, y2 = getMouthBBox(video_path=video_path, landmarks_path="")
+            rotation = get_video_rotation_mediainfo(video_path)
+            rotate_viedo_path = f"rotated_video.mp4"
+            rotate(videoPath=video_path, outputPath=rotate_viedo_path, rotation=rotation)
+
+            x1, y1, x2, y2 = getMouthBBox(video_path=rotate_viedo_path, landmarks_path="")
 
             # 5- croping the frames and save
             # dir_path = f"./Dataset/{user}/{word}"
@@ -93,8 +104,7 @@ def preprocess(video_path, word,user):
             cropped_video_path = f"cropped_video.mp4"
             final_video_path = f"final_video.mp4"
             # if FRAME_LEVEL_CROP: 
-            rotation = cropVideo(list(zip(x1, y1)), list(zip(x2, y2)), videoPath=video_path, outputPath=cropped_video_path)
-            rotate(videoPath=cropped_video_path, outputPath=final_video_path, rotation=rotation)
+            rotation = cropVideo(list(zip(x1, y1)), list(zip(x2, y2)), videoPath=rotate_viedo_path, outputPath=final_video_path)
             # else:
             #     cropVideo((x1,y1), (x2,y2), videoPath=video_path, outputPath=cropped_video_path)
            
