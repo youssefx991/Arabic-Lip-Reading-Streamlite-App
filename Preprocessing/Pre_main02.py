@@ -4,6 +4,7 @@ from moviepy.editor import VideoFileClip
 from Preprocessing.HelperFunctions import *
 from Preprocessing.StandardizeFPS import *
 from Preprocessing.StandardizeDuration import *
+from Preprocessing.Rotate import *
 import sys
 import io
 
@@ -90,9 +91,10 @@ def preprocess(video_path, word,user):
             # dirExists(dir_path=dir_path)
             # save_path = f"{dir_path}/{video_name}.mp4" 
             cropped_video_path = f"cropped_video.mp4"
-
+            final_video_path = f"final_video.mp4"
             # if FRAME_LEVEL_CROP: 
-            cropVideo(list(zip(x1, y1)), list(zip(x2, y2)), videoPath=video_path, outputPath=cropped_video_path)
+            rotation = cropVideo(list(zip(x1, y1)), list(zip(x2, y2)), videoPath=video_path, outputPath=cropped_video_path)
+            rotate(videoPath=cropped_video_path, outputPath=final_video_path, rotation=rotation)
             # else:
             #     cropVideo((x1,y1), (x2,y2), videoPath=video_path, outputPath=cropped_video_path)
            

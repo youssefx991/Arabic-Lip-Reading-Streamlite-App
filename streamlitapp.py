@@ -41,15 +41,15 @@ def process_uploaded_file(uploaded_file, preprocess_option):
     if preprocess_option:
         try:
             preprocess(video_path='test_video.mp4', word='test', user='test')
-            video_name = 'cropped_video.mp4'
+            video_name = 'final_video.mp4'
             abs_video_path = os.path.abspath(video_name)
 
-            video_frames = imageio.mimread('cropped_video.mp4', memtest=False)
-            imageio.mimsave('cropped_video.gif', video_frames, fps=10, loop=0)
+            video_frames = imageio.mimread('final_video.mp4', memtest=False)
+            imageio.mimsave('final_video.gif', video_frames, fps=10, loop=0)
             os.system(f'ffmpeg -i {abs_video_path} -vcodec libx264 {video_name} -y')
-            st.image('cropped_video.gif', width=400)
-            with open('cropped_video.mp4', 'rb') as f:
-                st.download_button('Download Cropped Video', f, file_name='cropped_video.mp4')
+            st.image('final_video.gif', width=400)
+            with open('final_video.mp4', 'rb') as f:
+                st.download_button('Download Cropped Video', f, file_name='final_video.mp4')
         except Exception as e:
             st.error("Error during preprocessing, will continue without cropping")
             video_name = 'test_video.mp4'
@@ -135,7 +135,7 @@ if __name__ == "__main__":
 #     if preprocess_option:
 #         try:
 #             preprocess(video_path='test_video.mp4', word='test', user='test')
-#             video_name = 'cropped_video.mp4'
+#             video_name = 'final_video.mp4'
 #         except Exception as e:
 #             st.error(f"Error during preprocessing, will continue without cropping")
 #             video_name = 'test_video.mp4'    

@@ -1,6 +1,15 @@
 import cv2
 import os
 import numpy as np
+from pymediainfo import MediaInfo
+
+def get_video_rotation_mediainfo(video_path):
+    media_info = MediaInfo.parse(video_path)
+    for track in media_info.tracks:
+        if track.track_type == "Video" and track.rotation:
+            return int(float(track.rotation))
+    return 0  # No rotation detected
+
 
 def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_video.mp4"):
     """
@@ -14,12 +23,14 @@ def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_v
         videoPath (str): Path to the input video.
         outputPath (str): Path to save the cropped video.
     """
-    print("in cropVideo from CropVids2")
+    # print("in cropVideo from CropVids2")
     # Load the video
     cap = cv2.VideoCapture(videoPath)
     if not cap.isOpened():
         print("Error opening video file:", videoPath)
         return
+
+    rotation = get_video_rotation_mediainfo(videoPath)
 
     # Get video properties
     original_fps = cap.get(cv2.CAP_PROP_FPS)
@@ -68,7 +79,7 @@ def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_v
             # Ensure the crop is within bounds
             if not (0 <= x1 < cap.get(3) and 0 <= x2 <= cap.get(3) and 
                     0 <= y1 < cap.get(4) and 0 <= y2 <= cap.get(4)):
-                print(f"Frame {frame_index}: Out of bounds, skipping.")
+                # print(f"Frame {frame_index}: Out of bounds, skipping.")
                 frame_index += 1
                 continue
 
@@ -105,3 +116,4 @@ def cropVideo(topLeftPoints, bottomRightPoints, videoPath, outputPath="cropped_v
     out.release()
 
     print(f"Cropped video saved to {outputPath} with {target_fps} FPS")
+    return rotation
