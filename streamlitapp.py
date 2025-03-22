@@ -53,7 +53,7 @@ def process_uploaded_file(uploaded_file, preprocess_option):
                 with open('final_video.mp4', 'rb') as f:
                     st.download_button('Download Cropped Video', f, file_name='final_video.mp4')
         except Exception as e:
-            st.error("Error during preprocessing, will continue without cropping: ", e)
+            st.error(f"Error during preprocessing, will continue without cropping: {e}")
             video_name = 'test_video.mp4'
 
     display_video_and_analyze(video_name)
