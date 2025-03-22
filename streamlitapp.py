@@ -1,3 +1,4 @@
+
 import streamlit as st
 import os 
 import imageio
@@ -40,16 +41,17 @@ def process_uploaded_file(uploaded_file, preprocess_option):
     video_name = 'test_video.mp4'
     if preprocess_option:
         try:
-            preprocess(video_path='test_video.mp4', word='test', user='test')
-            video_name = 'final_video.mp4'
-            abs_video_path = os.path.abspath(video_name)
+            with st.spinner('Preprocessing video...'):
+                preprocess(video_path='test_video.mp4', word='test', user='test')
+                video_name = 'final_video.mp4'
+                abs_video_path = os.path.abspath(video_name)
 
-            video_frames = imageio.mimread('final_video.mp4', memtest=False)
-            imageio.mimsave('final_video.gif', video_frames, fps=10, loop=0)
-            os.system(f'ffmpeg -i {abs_video_path} -vcodec libx264 {video_name} -y')
-            st.image('final_video.gif', width=400)
-            with open('final_video.mp4', 'rb') as f:
-                st.download_button('Download Cropped Video', f, file_name='final_video.mp4')
+                video_frames = imageio.mimread('final_video.mp4', memtest=False)
+                imageio.mimsave('final_video.gif', video_frames, fps=10, loop=0)
+                os.system(f'ffmpeg -i {abs_video_path} -vcodec libx264 {video_name} -y')
+                st.image('final_video.gif', width=400)
+                with open('final_video.mp4', 'rb') as f:
+                    st.download_button('Download Cropped Video', f, file_name='final_video.mp4')
         except Exception as e:
             st.error("Error during preprocessing, will continue without cropping")
             video_name = 'test_video.mp4'
@@ -60,8 +62,9 @@ def display_video_and_analyze(video_name):
     col1, col2 = st.columns(2)
 
     with col1:
-        st.info('The video below displays the uploaded video:')
-        st.video("test_video.mp4")
+        with st.spinner('Loading video...'):
+            st.info('The video below displays the uploaded video:')
+            st.video("test_video.mp4")
 
     with col2:
         check_file_exists(video_name)
