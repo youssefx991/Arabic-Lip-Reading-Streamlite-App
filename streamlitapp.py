@@ -41,7 +41,6 @@ def process_uploaded_file(uploaded_file, preprocess_option):
     video_name = 'test_video.mp4'
     if preprocess_option:
         try:
-            # with st.spinner('Preprocessing video...'):
             preprocess(video_path='test_video.mp4', word='test', user='test')
             video_name = 'final_video.mp4'
             abs_video_path = os.path.abspath(video_name)
@@ -53,7 +52,7 @@ def process_uploaded_file(uploaded_file, preprocess_option):
             with open('final_video.mp4', 'rb') as f:
                 st.download_button('Download Cropped Video', f, file_name='final_video.mp4')
         except Exception as e:
-            st.error(f"Error during preprocessing, will continue without cropping: {e}")
+            st.error("Error during preprocessing, will continue without cropping")
             video_name = 'test_video.mp4'
 
     display_video_and_analyze(video_name)
@@ -62,9 +61,8 @@ def display_video_and_analyze(video_name):
     col1, col2 = st.columns(2)
 
     with col1:
-        with st.spinner('Loading video...'):
-            st.info('The video below displays the uploaded video:')
-            st.video("test_video.mp4")
+        st.info('The video below displays the uploaded video:')
+        st.video("test_video.mp4")
 
     with col2:
         check_file_exists(video_name)
