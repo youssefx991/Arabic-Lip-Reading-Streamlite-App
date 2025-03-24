@@ -15,10 +15,10 @@ def main():
     # download_weights()
     with st.sidebar:
         st.image('https://www.onepointltd.com/wp-content/uploads/2020/03/inno2.png')
-        st.title('LipBuddy')
+        st.title('Arabic Lip Reading')
         st.info('This application is originally developed from the LipNet deep learning model.')
 
-    st.title('LipNet Full Stack App')
+    st.title('Arabic Lip Reading')
 
     uploaded_file = st.file_uploader("Upload a video")
     preprocess_option = st.checkbox('Crop Mouth Region video before analysis')
@@ -83,7 +83,7 @@ def display_video_and_analyze(video_name):
                 except Exception as e:
                     st.error("Error during video analysis, please make sure you uploaded a valid video file and selected the correct cropping option")
 
-    display_files_in_directory()
+    # display_files_in_directory()
 
 def display_files_in_directory():
     files = os.listdir('.')
