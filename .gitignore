@@ -1,0 +1,42 @@
+# Python specific
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+*.egg-info/
+*.egg
+*.whl
+
+# Streamlit specific
+.streamlit/
+*.stcache
+*.stlite/
+
+# Video and media files
+*.mp4
+*.gif
+*.avi
+*.mov
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# # TensorFlow and model files
+# *.h5
+# *.pb
+# *.ckpt
+# checkpoints/
+# saved_model/
