@@ -49,8 +49,6 @@ def process_uploaded_file(uploaded_file, preprocess_option):
             imageio.mimsave('final_video.gif', video_frames, fps=10, loop=0)
             os.system(f'ffmpeg -i {abs_video_path} -vcodec libx264 {video_name} -y')
             st.image('final_video.gif', width=400)
-            with open('final_video.mp4', 'rb') as f:
-                st.download_button('Download Cropped Video', f, file_name='final_video.mp4')
         except Exception as e:
             st.error("Error during preprocessing, will continue without cropping")
             video_name = 'test_video.mp4'
